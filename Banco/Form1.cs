@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Banco.contas;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,7 +39,7 @@ namespace Banco
                 Titular = new Cliente("Victor"),
                 Numero = 1
             };
-            
+
 
             this.contas[1] = new ContaPoupanca()
             {
@@ -55,6 +56,15 @@ namespace Banco
             adicionaConta(this.contas[0]);
             adicionaConta(this.contas[1]);
             adicionaConta(this.contas[2]);
+
+            //int num = 0;
+            //object o = num.GetType();
+
+            //if(o. == "Int32")
+            //{
+            //    MessageBox.Show("worked");
+
+            //}
 
             //int indice = 0;
             //Conta selecionada = contas[indice];
@@ -99,34 +109,47 @@ namespace Banco
 
         private void botaoDeposita_Click(object sender, EventArgs e)
         {
-            //int contaSelecionada = Convert.ToInt32(textoIndice.Text);
-            //pegar o valor digitado no campo valor
-            string valorDigitado = textoValor.Text;
+            try {
+                //int contaSelecionada = Convert.ToInt32(textoIndice.Text);
+                //pegar o valor digitado no campo valor
+                string valorDigitado = textoValor.Text;
 
-            ////Converter para double
-            double valorConvertido = Convert.ToDouble(valorDigitado);
+                ////Converter para double
+                double valorConvertido = Convert.ToDouble(valorDigitado);
 
-            //chamar método deposita
-            contas[comboContas.SelectedIndex].Deposita(Convert.ToDouble(valorConvertido));
+                //chamar método deposita
+                contas[comboContas.SelectedIndex].Deposita(Convert.ToDouble(valorConvertido));
 
-            //atualiza os campos
-            textoSaldo.Text = Convert.ToString(contas[comboContas.SelectedIndex].Saldo); 
+                //atualiza os campos
+                textoSaldo.Text = Convert.ToString(contas[comboContas.SelectedIndex].Saldo);
+            }
+            catch
+            {
+                MessageBox.Show("Argumento Inválido");
+            }
+
         }
-
         private void botaoSaca_Click(object sender, EventArgs e)
         {
-            //int contaSelecionada = Convert.ToInt32(textoIndice.Text);
-            //pegar o valor digitado no campo valor
-            string valorDigitado = textoValor.Text;
+            try
+            {
+                //int contaSelecionada = Convert.ToInt32(textoIndice.Text);
+                //pegar o valor digitado no campo valor
+                string valorDigitado = textoValor.Text;
 
-            //Converter para double
-            double valorConvertido = Convert.ToDouble(valorDigitado);
+                //Converter para double
+                double valorConvertido = Convert.ToDouble(valorDigitado);
 
-            //chamar método deposita
-            contas[comboContas.SelectedIndex].Saca(valorConvertido);
+                //chamar método deposita
+                contas[comboContas.SelectedIndex].Saca(valorConvertido);
 
-            //atualiza os campos
-           textoSaldo.Text = Convert.ToString(contas[comboContas.SelectedIndex].Saldo);
+                //atualiza os campos
+                textoSaldo.Text = Convert.ToString(contas[comboContas.SelectedIndex].Saldo);
+            }
+            catch
+            {
+                MessageBox.Show("Saldo Insuficiente");
+            } 
         }
 
         //private void botaoBusca_Click(object sender, EventArgs e)
@@ -182,6 +205,19 @@ namespace Banco
                 MessageBox.Show("Imposto da Conta Investimento:" + valor);
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Conta cc = new Conta();
+            cc.Nome = "caio";
+
+            Conta cc2 = new Conta();
+            cc2.Nome = "fernando";
+
+            MessageBox.Show(cc.Nome);
+            MessageBox.Show(cc2.Nome);
+            MessageBox.Show(Convert.ToString(Conta.TotalDeContas));
         }
     }
 }
