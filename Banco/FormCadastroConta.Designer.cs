@@ -28,52 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textoNumero = new System.Windows.Forms.TextBox();
             this.textoTitular = new System.Windows.Forms.TextBox();
             this.botaoCadastro = new System.Windows.Forms.Button();
             this.radioCC = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.radioCP = new System.Windows.Forms.RadioButton();
             this.radioCI = new System.Windows.Forms.RadioButton();
+            this.textoNumero = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(42, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Numero";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(42, 35);
+            this.label2.Location = new System.Drawing.Point(36, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Titular";
             // 
-            // textoNumero
-            // 
-            this.textoNumero.Location = new System.Drawing.Point(125, 6);
-            this.textoNumero.Name = "textoNumero";
-            this.textoNumero.Size = new System.Drawing.Size(100, 20);
-            this.textoNumero.TabIndex = 2;
-            // 
             // textoTitular
             // 
-            this.textoTitular.Location = new System.Drawing.Point(125, 32);
+            this.textoTitular.Location = new System.Drawing.Point(119, 12);
             this.textoTitular.Name = "textoTitular";
             this.textoTitular.Size = new System.Drawing.Size(100, 20);
             this.textoTitular.TabIndex = 3;
             // 
             // botaoCadastro
             // 
-            this.botaoCadastro.Location = new System.Drawing.Point(129, 139);
+            this.botaoCadastro.Location = new System.Drawing.Point(123, 139);
             this.botaoCadastro.Name = "botaoCadastro";
             this.botaoCadastro.Size = new System.Drawing.Size(75, 23);
             this.botaoCadastro.TabIndex = 4;
@@ -84,7 +68,7 @@
             // radioCC
             // 
             this.radioCC.AutoSize = true;
-            this.radioCC.Location = new System.Drawing.Point(125, 59);
+            this.radioCC.Location = new System.Drawing.Point(119, 67);
             this.radioCC.Name = "radioCC";
             this.radioCC.Size = new System.Drawing.Size(96, 17);
             this.radioCC.TabIndex = 5;
@@ -96,7 +80,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(42, 61);
+            this.label3.Location = new System.Drawing.Point(36, 69);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 13);
             this.label3.TabIndex = 6;
@@ -105,7 +89,7 @@
             // radioCP
             // 
             this.radioCP.AutoSize = true;
-            this.radioCP.Location = new System.Drawing.Point(125, 83);
+            this.radioCP.Location = new System.Drawing.Point(119, 91);
             this.radioCP.Name = "radioCP";
             this.radioCP.Size = new System.Drawing.Size(105, 17);
             this.radioCP.TabIndex = 7;
@@ -116,7 +100,7 @@
             // radioCI
             // 
             this.radioCI.AutoSize = true;
-            this.radioCI.Location = new System.Drawing.Point(125, 106);
+            this.radioCI.Location = new System.Drawing.Point(119, 114);
             this.radioCI.Name = "radioCI";
             this.radioCI.Size = new System.Drawing.Size(116, 17);
             this.radioCI.TabIndex = 8;
@@ -124,37 +108,53 @@
             this.radioCI.Text = "Conta Investimento";
             this.radioCI.UseVisualStyleBackColor = true;
             // 
+            // textoNumero
+            // 
+            this.textoNumero.Location = new System.Drawing.Point(119, 38);
+            this.textoNumero.Name = "textoNumero";
+            this.textoNumero.Size = new System.Drawing.Size(100, 20);
+            this.textoNumero.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(37, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Número";
+            // 
             // FormCadastroConta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(262, 174);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textoNumero);
             this.Controls.Add(this.radioCI);
             this.Controls.Add(this.radioCP);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.radioCC);
             this.Controls.Add(this.botaoCadastro);
             this.Controls.Add(this.textoTitular);
-            this.Controls.Add(this.textoNumero);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Name = "FormCadastroConta";
             this.Text = "FormCadastroConta";
+            this.Load += new System.EventHandler(this.FormCadastroConta_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textoNumero;
         private System.Windows.Forms.TextBox textoTitular;
         private System.Windows.Forms.Button botaoCadastro;
         private System.Windows.Forms.RadioButton radioCC;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RadioButton radioCP;
         private System.Windows.Forms.RadioButton radioCI;
+        private System.Windows.Forms.TextBox textoNumero;
+        private System.Windows.Forms.Label label1;
     }
 }

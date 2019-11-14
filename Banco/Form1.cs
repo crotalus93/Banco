@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Banco.contas;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +14,7 @@ namespace Banco
     public partial class Form1 : Form
     {
         //private Conta c;
-        private Conta[] contas;
+        private List<Conta> contas;
         private int numeroDeContas;
 
         public Form1()
@@ -23,38 +24,46 @@ namespace Banco
 
         public void adicionaConta(Conta conta)
         {
-            this.contas[this.numeroDeContas] = conta;
-            comboContas.Items.Add("Titular: " + conta.Titular.Nome);
+            this.contas.Add(conta);
+            comboContas.Items.Add(conta);
+            //comboContas.DisplayMember = "Titular.Nome";
             this.numeroDeContas++;
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            contas = new Conta[10];
+            contas = new List<Conta>();
 
-            this.contas[0] = new ContaCorrente()
-            {
-                Titular = new Cliente("Victor"),
-                Numero = 1
-            };
-            
-
-            this.contas[1] = new ContaPoupanca()
-            {
-                Titular = new Cliente("Mauricio"),
-                Numero = 2
-            };
+            ContaCorrente cc1 = new ContaCorrente() { Titular = new Cliente("Bruno"), Numero = 1 };
+            ContaPoupanca cp1 = new ContaPoupanca() { Titular = new Cliente("Maurício"), Numero = 2};
+            ContaInvestimento ci1 = new ContaInvestimento() { Titular = new Cliente("Osni"), Numero = 3 };
 
 
-            this.contas[2] = new ContaInvestimento()
-            {
-                Titular = new Cliente("Osni"),
-                Numero = 3
-            };
-            adicionaConta(this.contas[0]);
-            adicionaConta(this.contas[1]);
-            adicionaConta(this.contas[2]);
+            //this.contas[1] = new ContaPoupanca()
+            //{
+            //    Titular = new Cliente("Mauricio"),
+            //    Numero = 2
+            //};
+
+
+            //this.contas[2] = new ContaInvestimento()
+            //{
+            //    Titular = new Cliente("Osni"),
+            //    Numero = 3
+            //};
+            adicionaConta(cc1);
+            adicionaConta(cp1);
+            adicionaConta(ci1);
+
+            //int num = 0;
+            //object o = num.GetType();
+
+            //if(o. == "Int32")
+            //{
+            //    MessageBox.Show("worked");
+
+            //}
 
             //int indice = 0;
             //Conta selecionada = contas[indice];
@@ -99,34 +108,46 @@ namespace Banco
 
         private void botaoDeposita_Click(object sender, EventArgs e)
         {
-            //int contaSelecionada = Convert.ToInt32(textoIndice.Text);
-            //pegar o valor digitado no campo valor
-            string valorDigitado = textoValor.Text;
+            try {
+                Conta selecionada = (Conta)comboContas.SelectedItem;//pegar o valor digitado no campo valor
+                string valorDigitado = textoValor.Text;
 
-            ////Converter para double
-            double valorConvertido = Convert.ToDouble(valorDigitado);
+                ////Converter para double
+                double valorConvertido = Convert.ToDouble(valorDigitado);
 
-            //chamar método deposita
-            contas[comboContas.SelectedIndex].Deposita(Convert.ToDouble(valorConvertido));
+                //chamar método deposita
+                //contas[comboContas.SelectedIndex].Deposita(Convert.ToDouble(valorConvertido));
+                selecionada.Deposita(valorConvertido);
+                //atualiza os campos
+                textoSaldo.Text = Convert.ToString(selecionada.Saldo);
+            }
+            catch
+            {
+                MessageBox.Show("Argumento Inválido");
+            }
 
-            //atualiza os campos
-            textoSaldo.Text = Convert.ToString(contas[comboContas.SelectedIndex].Saldo); 
         }
-
         private void botaoSaca_Click(object sender, EventArgs e)
         {
-            //int contaSelecionada = Convert.ToInt32(textoIndice.Text);
-            //pegar o valor digitado no campo valor
-            string valorDigitado = textoValor.Text;
+            try
+            {
+                //int contaSelecionada = Convert.ToInt32(textoIndice.Text);
+                //pegar o valor digitado no campo valor
+                string valorDigitado = textoValor.Text;
 
-            //Converter para double
-            double valorConvertido = Convert.ToDouble(valorDigitado);
+                //Converter para double
+                double valorConvertido = Convert.ToDouble(valorDigitado);
 
-            //chamar método deposita
-            contas[comboContas.SelectedIndex].Saca(valorConvertido);
+                //chamar método deposita
+                contas[comboContas.SelectedIndex].Saca(valorConvertido);
 
-            //atualiza os campos
-           textoSaldo.Text = Convert.ToString(contas[comboContas.SelectedIndex].Saldo);
+                //atualiza os campos
+                textoSaldo.Text = Convert.ToString(contas[comboContas.SelectedIndex].Saldo);
+            }
+            catch
+            {
+                MessageBox.Show("Saldo Insuficiente");
+            } 
         }
 
         //private void botaoBusca_Click(object sender, EventArgs e)
@@ -182,6 +203,24 @@ namespace Banco
                 MessageBox.Show("Imposto da Conta Investimento:" + valor);
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Conta cc = new Conta();
+            cc.Nome = "caio";
+
+            Conta cc2 = new Conta();
+            cc2.Nome = "fernando";
+
+            if (cc2.GetType().Name.Equals("Conta"))
+            {
+                MessageBox.Show("Tipo da Conta:" + cc2.GetType().FullName);
+            }
+
+            MessageBox.Show(cc.Nome);
+            MessageBox.Show(cc2.Nome);
+            MessageBox.Show(Convert.ToString(Conta.TotalDeContas));
         }
     }
 }

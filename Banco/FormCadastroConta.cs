@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Banco.contas;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,18 +23,42 @@ namespace Banco
 
         private void botaoCadastro_Click(object sender, EventArgs e)
         {
-            Conta novaConta = new ContaCorrente();
-            novaConta.Titular = new Cliente(textoTitular.Text);
-            novaConta.Numero = Convert.ToInt32(textoNumero.Text);
-
-            this.formPrincipal.adicionaConta(novaConta);
-
-            this.Close();
+            if (radioCC.Checked)
+            {
+                Conta novaConta = new ContaCorrente();
+                novaConta.Titular = new Cliente(textoTitular.Text);
+                this.formPrincipal.adicionaConta(novaConta);
+                this.Close();
+            }
+            else
+            if (radioCI.Checked){
+                Conta novaConta = new ContaInvestimento();
+                novaConta.Titular = new Cliente(textoTitular.Text);
+                this.formPrincipal.adicionaConta(novaConta);
+                this.Close();
+            }
+            else
+            if (radioCP.Checked)
+            {
+                Conta novaConta = new ContaPoupanca();
+                novaConta.Titular = new Cliente(textoTitular.Text);
+                this.formPrincipal.adicionaConta(novaConta);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Selecione um tipo de conta!");
+            }
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void FormCadastroConta_Load(object sender, EventArgs e)
+        {
+            textoNumero.Text = Convert.ToString(Conta.TotalDeContas);
         }
     }
 }

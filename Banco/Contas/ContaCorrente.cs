@@ -4,17 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Banco
+namespace Banco.contas
 {
     public class ContaCorrente:Conta,ITributavel
     {
         public override void Deposita(double valorConvertido)
         {
-            this.Saldo+=valorConvertido-0.1;
+            if (valorConvertido < 0)
+            {
+                throw new ArgumentException();
+            }
+            this.Saldo += valorConvertido - 0.1;
         }
         public override void Saca(double valorConvertido)
         {
-            this.Saldo-=valorConvertido+0.05;
+            if (valorConvertido > this.Saldo)
+            {
+                throw new SaldoInsuficienteException();
+            }
+                this.Saldo -= valorConvertido + 0.05;
         }
         public double CTributo()
         {
