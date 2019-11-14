@@ -18,6 +18,11 @@ namespace Banco.contas
             this.Numero = Conta.TotalDeContas;
         }
 
+        //public Conta (Cliente Titular)
+        //{
+
+        //}
+
         public static int ProximoNumero()
         {
             return Conta.TotalDeContas + 1;
@@ -29,6 +34,20 @@ namespace Banco.contas
         public virtual void Saca(double valorConvertido)
         {
 
-        }  
+        }
+        //public override bool Equals(object obj)
+        //{
+        //    //if(obj is Conta)
+        //    //{
+        //        Conta outraConta = (Conta)obj;
+        //        return this.Numero == outraConta.Numero;
+        //    //}
+        //    //return false;
+        //}
+
+        public override string ToString()
+        {
+            return "Titular: " + this.Titular.Nome;
+        }
     }
 }
