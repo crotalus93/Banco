@@ -207,20 +207,26 @@ namespace Banco
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Conta cc = new Conta();
-            cc.Nome = "caio";
+            //Conta cc = new Conta();
+            //cc.Nome = "caio";
 
-            Conta cc2 = new Conta();
-            cc2.Nome = "fernando";
+            //Conta cc2 = new Conta();
+            //cc2.Nome = "fernando";
 
-            if (cc2.GetType().Name.Equals("Conta"))
-            {
-                MessageBox.Show("Tipo da Conta:" + cc2.GetType().FullName);
-            }
+            //if (cc2.GetType().Name.Equals("Conta"))
+            //{
+            //    MessageBox.Show("Tipo da Conta:" + cc2.GetType().FullName);
+            //}
 
-            MessageBox.Show(cc.Nome);
-            MessageBox.Show(cc2.Nome);
-            MessageBox.Show(Convert.ToString(Conta.TotalDeContas));
+            //MessageBox.Show(cc.Nome);
+            //MessageBox.Show(cc2.Nome);
+            //MessageBox.Show(Convert.ToString(Conta.TotalDeContas));
+
+            HashSet<String> devedores = new HashSet<string>();
+
+            devedores.Add("Thiago");
+
+
         }
     }
 }
